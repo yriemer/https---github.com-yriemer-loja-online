@@ -31,14 +31,12 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
               itemBuilder: (context, index) {
                 final produto = widget.carrinho[index];
                 return ListTile(
-                  leading: Image.asset(produto.icone), // Ícone do produto
-                  title: Text(produto.nome), // Nome do produto
+                  leading: Image.asset(produto.icone),
+                  title: Text(produto.nome),
                   trailing: Text(
-                    // Preço do produto
                     NumberFormat.currency(locale: 'pt_BR', name: 'R\$')
                         .format(produto.preco),
                   ),
-                  // Você também pode adicionar mais informações sobre o produto aqui.
                 );
               },
             ),
