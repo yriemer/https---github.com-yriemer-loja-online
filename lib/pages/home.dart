@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_loja/pages/tela_inicial.dart';
 import 'package:projeto_loja/pages/usuario.dart';
-import 'package:projeto_loja/pages/carrinho.dart';
+import '../models/usuario.dart';
+import '../pages/carrinho.dart';
 import '../models/produto.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         controller: paginaController,
         children: [
           TelaInicialPage(),
-          CarrinhoPage(carrinho: carrinho),
+          //CarrinhoPage(carrinho: carrinho),
           UsuarioPage(),
         ],
         onPageChanged: setPaginaAtual,
@@ -44,8 +45,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: pagAtual,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Todos'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: 'Meu Carrinho'),
+          //BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: 'Meu Carrinho'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'Meu Perfil'),
         ],
