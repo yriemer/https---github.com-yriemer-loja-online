@@ -17,6 +17,18 @@ class _ProdutosInfoPageState extends State<ProdutosInfoPage> {
   final _form = GlobalKey<FormState>();
   final _valor = TextEditingController();
 
+  comprar() {
+    if (_form.currentState!.validate()) {
+      //salvar compra
+
+      Navigator.pop(context);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Compra realizada com sucesso')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +80,34 @@ class _ProdutosInfoPageState extends State<ProdutosInfoPage> {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Informe o valor';
+                  } else if (double.parse(value) < 50) {
+                    return 'Compra minima de 50 reais';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              margin: EdgeInsets.only(top: 24),
+              child: ElevatedButton(
+                onPressed: comprar,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.check),
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        'Comprar',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

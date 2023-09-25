@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_loja/models/produto.dart';
+import 'package:projeto_loja/pages/carrinho.dart';
 import 'package:projeto_loja/pages/produto_info.dart';
 import 'package:projeto_loja/repositories/produto_repository.dart';
+
 import 'package:intl/intl.dart';
 
 class TelaInicialPage extends StatefulWidget {
@@ -13,6 +15,7 @@ class TelaInicialPage extends StatefulWidget {
 
 class _TelaInicialPageState extends State<TelaInicialPage> {
   List<Produto> selecionados = [];
+
   final tabela = ProdutoRepository.tabela;
   NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
 
@@ -94,7 +97,14 @@ class _TelaInicialPageState extends State<TelaInicialPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: selecionados.isNotEmpty
           ? FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CarrinhoPage(carrinho: selecionados),
+                  ),
+                );
+              },
               icon: const Icon(Icons.shopping_cart),
               label: const Text(
                 'Adicionar ao Carrinho',
